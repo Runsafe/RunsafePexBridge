@@ -1,6 +1,6 @@
 name: RunsafePexBridge
 main: no.runsafe.runsafepexbridge.Plugin
 version: 1.0.@BUILD@
-authors: mortenn
+author: mortenn
 depend: PermissionsEx
 description: Plugin to hook PermissionsEx into the Runsafe Framework
