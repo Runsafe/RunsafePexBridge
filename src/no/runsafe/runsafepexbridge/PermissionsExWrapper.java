@@ -1,9 +1,9 @@
 package no.runsafe.runsafepexbridge;
 
-import no.runsafe.framework.hook.IPlayerBuildPermission;
-import no.runsafe.framework.hook.IPlayerPermissions;
-import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.player.RunsafePlayer;
+import no.runsafe.framework.api.hook.IPlayerBuildPermission;
+import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import java.util.Arrays;
