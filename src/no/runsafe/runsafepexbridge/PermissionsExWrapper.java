@@ -4,6 +4,7 @@ import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import java.util.Arrays;
@@ -15,6 +16,16 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	public boolean blockPlayerBuilding(RunsafePlayer player, RunsafeLocation location)
 	{
 		return !player.hasPermission("permissions.build");
+	}
+
+	@Override
+	public boolean setUserGroup(RunsafePlayer player, String group)
+	{
+		PermissionUser user = PermissionsEx.getUser(player.getName());
+		if (user == null)
+			return false;
+		user.setGroups(new String[]{group});
+		return user.inGroup(group);
 	}
 
 	@Override
