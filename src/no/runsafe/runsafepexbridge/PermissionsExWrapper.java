@@ -47,10 +47,14 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	@Override
-	public boolean setGroup(RunsafePlayer player, String group)
+	public boolean setGroup(RunsafePlayer player, String groupName)
 	{
-		PermissionsEx.getUser(player.getRawPlayer()).setGroups(new String[]{group});
-		return PermissionsEx.getUser(player.getRawPlayer()).inGroup(group);
+		PermissionGroup group = PermissionsEx.getPermissionManager().getGroup(groupName);
+		PermissionsEx.getUser(player.getRawPlayer()).setGroups(new String[]{groupName});
+		boolean success = PermissionsEx.getUser(player.getRawPlayer()).inGroup(group);
+		if (success)
+			new GroupChangeEvent(player, group).Fire();
+		return success;
 	}
 
 	@Override
