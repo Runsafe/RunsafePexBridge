@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
@@ -55,6 +56,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public boolean setGroup(RunsafePlayer player, String groupName)
 	{
+		RunsafeServer.Instance.getPlayer("docpify").sendColouredMessage("AAAAaaaaa");
 		console.fine("Got request to set %s to group %s.", player.getName(), groupName);
 		PermissionUser user = PermissionsEx.getUser(player.getName());
 		user.setGroups(new String[]{groupName});
