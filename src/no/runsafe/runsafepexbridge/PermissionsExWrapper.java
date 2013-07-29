@@ -1,5 +1,6 @@
 package no.runsafe.runsafepexbridge;
 
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.minecraft.RunsafeLocation;
@@ -14,6 +15,11 @@ import java.util.List;
 
 public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPermission
 {
+	public PermissionsExWrapper(IOutput console)
+	{
+		this.console = console;
+	}
+
 	@Override
 	public boolean blockPlayerBuilding(RunsafePlayer player, RunsafeLocation location)
 	{
@@ -49,11 +55,14 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public boolean setGroup(RunsafePlayer player, String groupName)
 	{
+		console.fine("Got request to set %s to group %s.", player.getName(), groupName);
 		PermissionUser user = PermissionsEx.getUser(player.getName());
 		user.setGroups(new String[]{groupName});
 		boolean success = user.inGroup(groupName, false);
 		if (success)
 			new GroupChangeEvent(player, groupName).Fire();
+		else
+			console.fine("User group membership appears to have failed - Member of: %s", user.getGroupsNames());
 		return success;
 	}
 
@@ -68,4 +77,6 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	{
 		return Arrays.asList(PermissionsEx.getUser(player.getName()).getPermissions(null));
 	}
+
+	private final IOutput console;
 }
