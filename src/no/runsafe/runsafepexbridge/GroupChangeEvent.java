@@ -2,26 +2,20 @@ package no.runsafe.runsafepexbridge;
 
 import no.runsafe.framework.minecraft.event.player.RunsafeCustomEvent;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
-import ru.tehkode.permissions.PermissionGroup;
 
 public class GroupChangeEvent extends RunsafeCustomEvent
 {
-	public GroupChangeEvent(RunsafePlayer player, PermissionGroup group)
+	public GroupChangeEvent(RunsafePlayer player, String group)
 	{
 		super(player, "user.group.change");
 		this.group = group;
 	}
 
-	public PermissionGroup getGroup()
+	@Override
+	public String getData()
 	{
 		return group;
 	}
 
-	@Override
-	public String getData()
-	{
-		return group.getName();
-	}
-
-	private final PermissionGroup group;
+	private final String group;
 }
