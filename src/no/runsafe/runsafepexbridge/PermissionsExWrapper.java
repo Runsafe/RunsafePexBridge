@@ -3,8 +3,8 @@ package no.runsafe.runsafepexbridge;
 import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
@@ -22,13 +22,13 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	@Override
-	public boolean blockPlayerBuilding(RunsafePlayer player, RunsafeLocation location)
+	public boolean blockPlayerBuilding(IPlayer player, RunsafeLocation location)
 	{
 		return !player.hasPermission("permissions.build");
 	}
 
 	@Override
-	public List<String> getUserGroups(RunsafePlayer player)
+	public List<String> getUserGroups(IPlayer player)
 	{
 		return Arrays.asList(PermissionsEx.getUser(player.getName()).getGroupsNames());
 	}
@@ -44,7 +44,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	@Override
-	public boolean setGroup(RunsafePlayer player, String groupName)
+	public boolean setGroup(IPlayer player, String groupName)
 	{
 		PermissionUser user = PermissionsEx.getUser(player.getName());
 		user.setGroups(new String[]{groupName});
@@ -63,7 +63,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	@Override
-	public List<String> getPlayerPermissions(RunsafePlayer player)
+	public List<String> getPlayerPermissions(IPlayer player)
 	{
 		return Arrays.asList(PermissionsEx.getUser(player.getName()).getPermissions(null));
 	}
