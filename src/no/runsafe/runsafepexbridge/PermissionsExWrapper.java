@@ -5,7 +5,7 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IPlayer;
-import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
+import org.apache.commons.lang.StringUtils;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -52,7 +52,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 		if (success)
 			new GroupChangeEvent(player, groupName).Fire();
 		else
-			debugger.debugFine("User group membership appears to have failed - Member of: %s", Strings.join(user.getGroupsNames(), ", "));
+			debugger.debugFine("User group membership appears to have failed - Member of: %s", StringUtils.join(user.getGroupsNames(), ", "));
 		return success;
 	}
 
