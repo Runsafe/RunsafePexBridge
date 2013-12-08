@@ -1,10 +1,10 @@
 package no.runsafe.runsafepexbridge;
 
 import no.runsafe.framework.api.IDebug;
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
@@ -22,7 +22,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	@Override
-	public boolean blockPlayerBuilding(IPlayer player, RunsafeLocation location)
+	public boolean blockPlayerBuilding(IPlayer player, ILocation location)
 	{
 		return !player.hasPermission("permissions.build");
 	}
