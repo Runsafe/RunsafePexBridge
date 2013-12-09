@@ -1,9 +1,9 @@
 package no.runsafe.runsafepexbridge;
 
-import no.runsafe.framework.api.IDebug;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import org.apache.commons.lang.StringUtils;
 import ru.tehkode.permissions.PermissionGroup;
