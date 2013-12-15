@@ -10,7 +10,6 @@ public class Plugin extends RunsafePlugin
 	protected void PluginSetup()
 	{
 		// Framework features
-		addComponent(Events.class);
 		addComponent(FrameworkHooks.class);
 
 		// Plugin components
