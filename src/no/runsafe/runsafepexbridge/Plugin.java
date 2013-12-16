@@ -7,7 +7,7 @@ import no.runsafe.framework.features.FrameworkHooks;
 public class Plugin extends RunsafePlugin
 {
 	@Override
-	protected void PluginSetup()
+	protected void pluginSetup()
 	{
 		// Framework features
 		addComponent(FrameworkHooks.class);
