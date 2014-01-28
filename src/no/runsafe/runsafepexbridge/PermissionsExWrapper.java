@@ -68,5 +68,29 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 		return Arrays.asList(PermissionsEx.getUser(player.getName()).getPermissions(null));
 	}
 
+	@Override
+	public void addPermission(IPlayer player, String permission, String world)
+	{
+		PermissionsEx.getPermissionManager().getUser(player.getName()).addPermission(permission, world);
+	}
+
+	@Override
+	public void addPermission(IPlayer player, String permission)
+	{
+		PermissionsEx.getPermissionManager().getUser(player.getName()).addPermission(permission);
+	}
+
+	@Override
+	public void removePermission(IPlayer player, String permission, String world)
+	{
+		PermissionsEx.getPermissionManager().getUser(player.getName()).removePermission(permission, world);
+	}
+
+	@Override
+	public void removePermission(IPlayer player, String permission)
+	{
+		PermissionsEx.getPermissionManager().getUser(player.getName()).removePermission(permission);
+	}
+
 	private final IDebug debugger;
 }
