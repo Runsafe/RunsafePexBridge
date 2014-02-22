@@ -2,6 +2,7 @@ package no.runsafe.runsafepexbridge;
 
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
+import no.runsafe.framework.api.hook.IPlayerDataProvider;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
@@ -10,11 +11,9 @@ import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPermission
+public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPermission, IPlayerDataProvider
 {
 	public PermissionsExWrapper(IDebug console)
 	{
@@ -93,4 +92,12 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	}
 
 	private final IDebug debugger;
+
+	@Override
+	public Map<String, String> GetPlayerData(IPlayer player)
+	{
+		Map<String, String> data = new HashMap<String, String>(1);
+		data.put("pex.rank",  StringUtils.join(PermissionsEx.getUser(player.getName()).getGroupsNames(), ", "));
+		return data;
+	}
 }
