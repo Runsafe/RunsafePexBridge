@@ -58,13 +58,13 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public List<String> getGroupPermissions(String groupName)
 	{
-		return Arrays.asList(PermissionsEx.getPermissionManager().getGroup(groupName).getPermissions(null));
+		return PermissionsEx.getPermissionManager().getGroup(groupName).getPermissions(null);
 	}
 
 	@Override
 	public List<String> getPlayerPermissions(IPlayer player)
 	{
-		return Arrays.asList(PermissionsEx.getUser(player.getName()).getPermissions(null));
+		return PermissionsEx.getUser(player.getName()).getPermissions(null);
 	}
 
 	@Override
