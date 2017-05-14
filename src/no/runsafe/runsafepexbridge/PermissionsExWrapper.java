@@ -29,7 +29,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public List<String> getUserGroups(IPlayer player)
 	{
-		return Arrays.asList(PermissionsEx.getUser(player.getName()).getGroupsNames());
+		return Arrays.asList(PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).getGroupsNames());
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public boolean setGroup(IPlayer player, String groupName)
 	{
-		PermissionUser user = PermissionsEx.getUser(player.getName());
+		PermissionUser user = PermissionsEx.getPermissionManager().getUser(player.getUniqueId());
 		user.setGroups(new String[]{groupName});
 		boolean success = user.inGroup(groupName, false);
 		if (success)
@@ -64,31 +64,31 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public List<String> getPlayerPermissions(IPlayer player)
 	{
-		return PermissionsEx.getUser(player.getName()).getPermissions(null);
+		return PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).getPermissions(null);
 	}
 
 	@Override
 	public void addPermission(IPlayer player, String permission, String world)
 	{
-		PermissionsEx.getPermissionManager().getUser(player.getName()).addPermission(permission, world);
+		PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).addPermission(permission, world);
 	}
 
 	@Override
 	public void addPermission(IPlayer player, String permission)
 	{
-		PermissionsEx.getPermissionManager().getUser(player.getName()).addPermission(permission);
+		PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).addPermission(permission);
 	}
 
 	@Override
 	public void removePermission(IPlayer player, String permission, String world)
 	{
-		PermissionsEx.getPermissionManager().getUser(player.getName()).removePermission(permission, world);
+		PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).removePermission(permission, world);
 	}
 
 	@Override
 	public void removePermission(IPlayer player, String permission)
 	{
-		PermissionsEx.getPermissionManager().getUser(player.getName()).removePermission(permission);
+		PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).removePermission(permission);
 	}
 
 	private final IDebug debugger;
@@ -97,7 +97,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	public Map<String, String> GetPlayerData(IPlayer player)
 	{
 		Map<String, String> data = new HashMap<String, String>(1);
-		data.put("pex.rank",  StringUtils.join(PermissionsEx.getUser(player.getName()).getGroupsNames(), ", "));
+		data.put("pex.rank",  StringUtils.join(PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).getGroupsNames(), ", "));
 		return data;
 	}
 }
