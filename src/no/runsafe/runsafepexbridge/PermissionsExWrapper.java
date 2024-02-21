@@ -36,7 +36,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	public List<String> getGroups()
 	{
 		PermissionGroup[] groups = PermissionsEx.getPermissionManager().getGroups();
-		List<String> groupList = new ArrayList<String>();
+		List<String> groupList = new ArrayList<>();
 		for (PermissionGroup group : groups)
 			groupList.add(group.getName());
 		return groupList;
@@ -96,7 +96,7 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	@Override
 	public Map<String, String> GetPlayerData(IPlayer player)
 	{
-		Map<String, String> data = new HashMap<String, String>(1);
+		Map<String, String> data = new HashMap<>(1);
 		data.put("pex.rank",  StringUtils.join(PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).getGroupsNames(), ", "));
 		return data;
 	}
