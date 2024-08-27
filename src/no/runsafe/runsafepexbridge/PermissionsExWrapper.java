@@ -4,6 +4,7 @@ import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.hook.IPlayerBuildPermission;
 import no.runsafe.framework.api.hook.IPlayerDataProvider;
 import no.runsafe.framework.api.hook.IPlayerPermissions;
+import no.runsafe.framework.api.hook.PlayerData;
 import no.runsafe.framework.api.log.IDebug;
 import no.runsafe.framework.api.player.IPlayer;
 import org.apache.commons.lang.StringUtils;
@@ -94,10 +95,16 @@ public class PermissionsExWrapper implements IPlayerPermissions, IPlayerBuildPer
 	private final IDebug debugger;
 
 	@Override
-	public Map<String, String> GetPlayerData(IPlayer player)
+	public void GetPlayerData(PlayerData data)
 	{
-		Map<String, String> data = new HashMap<>(1);
-		data.put("pex.rank",  StringUtils.join(PermissionsEx.getPermissionManager().getUser(player.getUniqueId()).getGroupsNames(), ", "));
-		return data;
+		data.addData(
+			"pex.rank",
+			() ->
+			{
+				PermissionUser user = PermissionsEx.getPermissionManager().getUser(data.getPlayer().getUniqueId());
+				List<String> groups = user.getParentIdentifiers(null);
+				return String.join(", ", groups);
+			}
+		);
 	}
 }
